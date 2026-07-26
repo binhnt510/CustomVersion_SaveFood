@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+@import "tailwindcss";
+
+/* ─── SaveFood Design System Tokens ────────────────────────────────────────── */
+/* Dựa theo SKILL.md — KHÔNG thay đổi màu sắc tùy tiện, phải dùng các token này */
+
+@theme {
+  /* ── Brand Colors (tông xanh lá sinh thái) ── */
+  --color-brand-50: #f0fdf4;
+  --color-brand-100: #dcfce7;
+  --color-brand-200: #bbf7d0;
+  --color-brand-300: #86efac;
+  --color-brand-400: #4ade80;
+  --color-brand-500: #22c55e;
+  --color-brand-600: #16a34a;
+  --color-brand-700: #15803d;
+  --color-brand-800: #166534;
+  --color-brand-900: #14532d;
+
+  /* ── Expiry Status Colors (màu cảnh báo hết hạn) ── */
+  --color-expiry-fresh: #22c55e;
+  --color-expiry-soon: #f59e0b;
+  --color-expiry-urgent: #ef4444;
+  --color-expiry-expired: #9ca3af;
+
+  /* ── Brand Orange ── */
+  --color-brand-orange: #f97316;
+  --color-brand-orange-soft: #ffedd5;
+
+  /* ── Surface Colors (nền & border) ── */
+  --color-surface-base: #ffffff;
+  --color-surface-subtle: #f9fafb;
+  --color-surface-muted: #f3f4f6;
+  --color-surface-border: #e5e7eb;
+  --color-surface-strong: #111827;
+
+  /* ── Ink Colors (chữ) ── */
+  --color-ink-primary: #111827;
+  --color-ink-secondary: #4b5563;
+  --color-ink-tertiary: #9ca3af;
+  --color-ink-inverse: #ffffff;
+
+  /* ── Typography ── */
+  --font-sans: 'Be Vietnam Pro', 'Inter', sans-serif;
+  --font-display: 'Playfair Display', serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* ── Mintlify Design System (Admin Area) ── */
+  --color-mint-primary: #0a0a0a;
+  --color-mint-on-primary: #ffffff;
+  --color-mint-brand-green: #00d4a4;
+  --color-mint-brand-green-deep: #00b48a;
+  --color-mint-brand-green-soft: #7cebcb;
+  --color-mint-brand-error: #d45656;
+  --color-mint-brand-warn: #c37d0d;
+  --color-mint-canvas: #ffffff;
+  --color-mint-surface: #f7f7f7;
+  --color-mint-surface-soft: #fafafa;
+  --color-mint-hairline: #e5e5e5;
+  --color-mint-hairline-soft: #ededed;
+  --color-mint-ink: #0a0a0a;
+  --color-mint-charcoal: #1c1c1e;
+  --color-mint-slate: #3a3a3c;
+  --color-mint-steel: #5a5a5c;
+  --color-mint-stone: #888888;
+  --color-mint-muted: #a8a8aa;
+
+  --font-inter: 'Inter', sans-serif;
+  --font-geist: 'Geist Mono', 'SF Mono', Menlo, Consolas, monospace;
+
+
+  /* ── Font Size Scale ── */
+  --text-display-2xl: 4.5rem;
+  --text-display-xl: 3.75rem;
+  --text-display-lg: 3rem;
+  --text-heading-xl: 2rem;
+  --text-heading-lg: 1.5rem;
+  --text-heading-md: 1.25rem;
+  --text-heading-sm: 1.125rem;
+  --text-body-lg: 1.125rem;
+  --text-body-md: 1rem;
+  --text-body-sm: 0.875rem;
+  --text-caption: 0.75rem;
+
+  /* ── Spacing ── */
+  --spacing-section-y: 5rem;
+  --spacing-card-p: 1.25rem;
+  --spacing-container: 80rem;
+
+  /* ── Border Radius ── */
+  --radius-card: 1rem;
+  --radius-badge: 9999px;
+  --radius-button: 9999px; /* Pill shape for Eco-SaaS mix */
+  --radius-input: 0.5rem;
+
+  /* ── Box Shadow ── */
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.06);
+  --shadow-card-hover: 0 4px 12px rgba(0,0,0,0.08), 0 16px 32px rgba(0,0,0,0.08);
+  --shadow-dropdown: 0 8px 24px rgba(0,0,0,0.12);
+
+  /* ── Animations ── */
+  --animate-fade-in: fadeIn 0.2s ease-out;
+  --animate-slide-up: slideUp 0.3s ease-out;
+  --animate-pulse-expiry: pulseExpiry 2s cubic-bezier(0.4,0,0.6,1) infinite;
+  --animate-fade-rise: fadeRise 1s ease-out forwards;
+  --animate-fade-rise-delay: fadeRise 1s ease-out 0.3s forwards;
+  --animate-fade-rise-delay-2: fadeRise 1s ease-out 0.6s forwards;
+}
+
+/* ─── Keyframes ─────────────────────────────────────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(8px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulseExpiry {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes fadeRise {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Base Styles ────────────────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    font-family: var(--font-sans);
+    color: var(--color-ink-primary);
+    background-color: var(--color-surface-subtle);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Focus ring mặc định cho accessibility */
+  :focus-visible {
+    outline: 2px solid var(--color-brand-500);
+    outline-offset: 2px;
+    border-radius: var(--radius-input);
+  }
+
+  /* Ẩn con mắt mặc định của Edge/Chrome trong ô password */
+  input[type="password"]::-ms-reveal,
+  input[type="password"]::-ms-clear {
+    display: none;
+  }
+  input[type="password"]::-webkit-reveal {
+    display: none;
+  }
+
+  /* Scrollbar mảnh và subtle */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-surface-muted);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-surface-border);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-ink-tertiary);
+  }
+
+  /* Global Select Styling */
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E");
+    background-position: right 0.75rem center;
+    background-repeat: no-repeat;
+    background-size: 1.25em 1.25em;
+  }
+  
+  option {
+    background-color: var(--color-surface-base);
+    color: var(--color-ink-primary);
+    font-size: 14px;
+    padding: 8px;
+  }
+}
