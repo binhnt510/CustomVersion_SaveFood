@@ -2,6 +2,7 @@
 
 > **Nền tảng thương mại điện tử kết nối cửa hàng thực phẩm với khách hàng, giúp giảm thiểu lãng phí thực phẩm thông qua việc bán các sản phẩm gần hết hạn với giá ưu đãi.**
 <img width="2877" height="1449" src="images/web.png" />
+
 ---
 
 ## 📋 Mục lục
